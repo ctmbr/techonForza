@@ -9,7 +9,7 @@ router.get("/", checkAuth, async (req, res) => {
     // });
     // const blogs = blogData.map((blog) => blog.get({ plain: true }));
     const blogs = ["1", "2", "3"];
-    res.render("admin", { blogs });
+    res.render("admin", { blogs, isLoggedIn: req.session.loggedIn });
   } catch (err) {
     console.log(err);
     return;

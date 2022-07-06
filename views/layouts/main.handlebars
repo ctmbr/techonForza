@@ -7,10 +7,17 @@
   </head>
   <body>
     <nav>
-      <p>hello nav</p>
+      <button id="dashboard">dashboard</button>
+      {{#if isLoggedIn}}
+        <button id="logout">logout</button>
+      {{else}}
+        <button id="signup">signup</button>
+        <button id="login">login</button>
+      {{/if}}
     </nav>
     <main>
       {{{body}}}
     </main>
   </body>
+  <script src="/nav.js"></script>
 </html>
