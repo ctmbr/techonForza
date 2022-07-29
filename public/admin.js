@@ -1,15 +1,43 @@
-const editPostBtn = document.querySelector("#edit");
-const npFormBtn = document.querySelector("#npForm");
-const deletePostBtn = document.querySelector("#delete");
+const editBlogForms = document.querySelectorAll(".edit-blog");
+const editButtons = document.querySelectorAll(".edit-btn");
+editButtons.forEach((button) => {
+  button.addEventListener("click", function (e) {
+    console.log(e.target.parentElement);
+    e.target.parentElement.children[0].classList.add("hidden");
+    e.target.parentElement.children[1].classList.remove("hidden");
+    e.target.parentElement.children[2].classList.add("hidden");
+    e.target.parentElement.children[3].classList.remove("hidden");
+    e.target.parentElement.children[4].classList.add("hidden");
+  });
+});
 
-editPostBtn.addEventListener("click", editPost);
+const cancelButtons = document.querySelectorAll(".cancel-btn");
+cancelButtons.forEach((button) => {
+  button.addEventListener("click", function (e) {
+    console.log(e.target.parentElement);
+    e.target.parentElement.children[0].classList.remove("hidden");
+    e.target.parentElement.children[1].classList.add("hidden");
+    e.target.parentElement.children[2].classList.remove("hidden");
+    e.target.parentElement.children[3].classList.add("hidden");
+    e.target.parentElement.children[4].classList.remove("hidden");
+  });
+});
+
+const deleteButtons = document.querySelectorAll(".delete-btn");
+deleteButtons.forEach((button) => {
+  button.addEventListener("click", function () {
+    deletePost(button.dataset.blogid);
+  });
+});
+
+const npFormBtn = document.querySelector("#npForm");
+
 npFormBtn.addEventListener("submit", function (e) {
   e.preventDefault();
   console.log(e.target.children[1].value);
   console.log(e.target.children[2].value);
   newPost(e.target.children[1].value, e.target.children[2].value);
 });
-deletePostBtn.addEventListener("click", deletePost);
 
 async function editPost() {
   const response = await fetch("/api/blog", {
@@ -28,9 +56,11 @@ async function newPost(title, body) {
   document.location.reload();
 }
 
-async function deletePost() {
-  const response = await fetch("/api/blog", {
+async function deletePost(id) {
+  await fetch(`/api/blog/${id}`, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" },
   });
+
+  document.location.reload();
 }

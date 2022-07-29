@@ -36,4 +36,22 @@ router.put("/:postId", checkAuth, async (req, res) => {
   }
 });
 
+router.delete("/:postId", checkAuth, async (req, res) => {
+  try {
+    const [affectedRows] = Blog.destroy({
+      where: {
+        id: req.params.postId,
+      },
+    });
+
+    if (affectedRows > 0) {
+      res.status(200).end();
+    } else {
+      res.status(400).end();
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 module.exports = router;

@@ -10,7 +10,18 @@
   <button type="submit">Post Blog</button>
 </form>
 {{#each blogs}}
-  <h1>{{title}}</h1>
-  <p>{{body}}</p>
+  <section data-blogid={{id}}>
+    <div class="read-only"><h1>{{title}}</h1>
+      <p>{{body}}</p></div>
+
+    <form class="edit-blog hidden" data-blogid={{id}}>
+      <input name="title" value="{{title}}" type="text" required />
+      <textarea rows="6" columns="9" required>{{body}}</textarea>
+      <button type="submit">Repost Blog</button>
+    </form>
+    <button data-blogid={{id}} class="edit-btn">edit</button>
+    <button data-blogid={{id}} class="hidden cancel-btn">cancel</button>
+    <button data-blogid={{id}} class="delete-btn">delete</button>
+  </section>
 {{/each}}
 <script src="/admin.js"></script>
