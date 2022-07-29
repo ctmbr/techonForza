@@ -1,4 +1,17 @@
 const editBlogForms = document.querySelectorAll(".edit-blog");
+editBlogForms.forEach((form) => {
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    console.log(e.target.children[0].value);
+    console.log(e.target.children[1].value);
+    editPost(
+      e.target.dataset.blogid,
+      e.target.children[0].value,
+      e.target.children[1].value
+    );
+  });
+});
+
 const editButtons = document.querySelectorAll(".edit-btn");
 editButtons.forEach((button) => {
   button.addEventListener("click", function (e) {
@@ -39,11 +52,14 @@ npFormBtn.addEventListener("submit", function (e) {
   newPost(e.target.children[1].value, e.target.children[2].value);
 });
 
-async function editPost() {
-  const response = await fetch("/api/blog", {
+async function editPost(id, title, body) {
+  await fetch(`/api/blog/${id}`, {
     method: "PUT",
+    body: JSON.stringify({ title, body }),
     headers: { "Content-Type": "application/json" },
   });
+
+  document.location.reload();
 }
 
 async function newPost(title, body) {
