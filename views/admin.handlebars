@@ -1,10 +1,16 @@
 <div>
   <button id="edit">edit</button>
-  <button id="new">new</button>
   <button id="delete">delete</button>
 
 </div>
+<form id="npForm">
+  <label for="title">Enter Title</label>
+  <input name="title" type="text" required />
+  <input type="text" placeholder="Your post begins..." required />
+  <button type="submit">Post Blog</button>
+</form>
 {{#each blogs}}
-  <p>{{blog}}</p>
+  <h1>{{title}}</h1>
+  <p>{{body}}</p>
 {{/each}}
 <script src="/admin.js"></script>

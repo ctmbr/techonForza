@@ -1,10 +1,15 @@
 const editPostBtn = document.querySelector("#edit");
-const newPostBtn = document.querySelector("#new");
+const npFormBtn = document.querySelector("#npForm");
 const deletePostBtn = document.querySelector("#delete");
 
-editPostBtn.document.addEventListener("click", editPost);
-newPostBtn.document.addEventListener("click", newPost);
-deletePostBtn.document.addEventListener("click", deletePost);
+editPostBtn.addEventListener("click", editPost);
+npFormBtn.addEventListener("submit", function (e) {
+  e.preventDefault();
+  console.log(e.target.children[1].value);
+  console.log(e.target.children[2].value);
+  newPost(e.target.children[1].value, e.target.children[2].value);
+});
+deletePostBtn.addEventListener("click", deletePost);
 
 async function editPost() {
   const response = await fetch("/api/blog", {
@@ -13,11 +18,14 @@ async function editPost() {
   });
 }
 
-async function newPost() {
-  const response = await fetch("/api/blog", {
+async function newPost(title, body) {
+  await fetch("/api/blog", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ title, body }),
   });
+
+  document.location.reload();
 }
 
 async function deletePost() {

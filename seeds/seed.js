@@ -2,7 +2,7 @@ const sequelize = require("../config/connection");
 const { User, Blog, Comment } = require("../models");
 
 const userData = require("./userData.json");
-const BlogData = require("./blogData.json");
+const BlogData = require("./blogData");
 const CommentData = require("./commentData.json");
 
 const seedDatabase = async () => {
@@ -24,3 +24,23 @@ const seedDatabase = async () => {
 };
 
 seedDatabase();
+
+//
+// const sequelize = require("../config/connection");
+// const { User, Blog, Comment } = require("../models");
+
+// const userData = require("./userData");
+// const BlogData = require("./blogData");
+// // const CommentData = require("./commentData");
+
+// const seedAll = async () => {
+//   await sequelize.sync({ force: true });
+
+//   await userData();
+
+//   await BlogData();
+
+//   process.exit(0);
+// };
+
+// seedAll();
