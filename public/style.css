@@ -2,21 +2,18 @@
     display: none;
 }
 
-/* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap");
+/* /* @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"); */
 
 * {
     margin: 0;
     padding: 0;
+    background: black;
     box-sizing: border-box;
     font-family: "Poppins", sans-serif;
     color: white;
 }
 
-body {
-    background: black;
-}
-
-header h1 {
+/* header h1 {
     cursor: default;
     font-size: 75px;
     font-weight: 900;
@@ -81,7 +78,7 @@ nav ul li a:hover {
     color: #6e47fd;
     border-radius: 48%;
     background-color: black;
-    /* 180559b4
+    180559b4
 }
 
 nav ul li a:after {
